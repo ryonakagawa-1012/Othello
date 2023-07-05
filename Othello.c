@@ -9,9 +9,10 @@
 #include <math.h>
 #include <stdio.h>
 
-#define WINDOW_MAIN_SIZE 800    // オセロウィンドウのサイズ
-#define WINDOW_START_SIZE 400   // スタート画面のサイズ
-#define WINDOW_RESULT_SIZE 400  // リザルト画面のサイズ
+#define WINDOW_MAIN_SIZE 800      // オセロウィンドウのサイズ
+#define WINDOW_START_SIZE 400     // スタート画面のサイズ
+#define X_WINDOW_RESULT_SIZE 800  // リザルト画面のXサイズ
+#define Y_WINDOW_RESULT_SIZE 600  // リザルト画面のYサイズ
 
 #define CELL_SIZE 100  // 1マスのサイズ
 
@@ -70,31 +71,11 @@ int main() {
         2;  // スタート画面の左下のy座標
 
     double X_WINDOW_RESULT_COORDINATE =
-        (X_WINDOW_COORDINATE_MAX - WINDOW_RESULT_SIZE) /
+        (X_WINDOW_COORDINATE_MAX - X_WINDOW_RESULT_SIZE) /
         2;  // リザルト画面の左下のx座標
     double Y_WINDOW_RESULT_COORDINATE =
-        (Y_WINDOW_COORDINATE_MAX - WINDOW_RESULT_SIZE) /
+        (Y_WINDOW_COORDINATE_MAX - Y_WINDOW_RESULT_SIZE) /
         2;  // リザルト画面の左下のy座標
-
-    /**********ここまで**********/
-
-    /**********スタート画面を作成**********/
-
-    // HgWOpen(X_WINDOW_START_COORDINATE, Y_WINDOW_START_COORDINATE,
-    // WINDOW_START_SIZE, WINDOW_START_SIZE);  // スタート画面を作成
-
-    // HgWSetFont(0,HG_GB, 50); // フォントを設定
-
-    // HgWText(0, 0, 0, "Othello"); // スタート画面にOthelloを表示
-
-    // HgWText(0, 0, -100, "Click to start"); // スタート画面にClick to
-    // startを表示
-
-    // HgSetEventMask(HG_MOUSE_DOWN); // マウスクリックを検出するように設定
-
-    // HgGetChar(); // 何かキーを押すまで待つ
-
-    // HgLClear(0); // スタート画面を消去
 
     /**********ここまで**********/
 
@@ -606,7 +587,8 @@ void CAN_PUT(int turn, int x, int y) {
 void Result(int result, double Wid_x, double Wid_y) {
 #define R 50  // にこちゃんマークの半径
 
-    HgWOpen(Wid_x, Wid_y, 800, 600);  // ウィンドウを開く
+    HgWOpen(Wid_x, Wid_y, X_WINDOW_RESULT_SIZE,
+            Y_WINDOW_RESULT_SIZE);  // ウィンドウを開く
 
     double txt_wid, txt_hei;  // 画面の幅と高さ
 
