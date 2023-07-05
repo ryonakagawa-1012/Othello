@@ -1,20 +1,25 @@
-#include <stdio.h>
 #include <handy.h>
 #include <math.h>
+#include <stdio.h>
 
 #define R 50
 
-int main()
-{
-    double txt_wid, txt_hei; // 画面の幅と高さ
+int main() {
+    double txt_wid, txt_hei;  // 画面の幅と高さ
 
-    int x, y = 300; // にこちゃんマークの座標
+    int x, y = 300;  // にこちゃんマークの座標
 
-    int i; // for文用
+    int i;  // for文用
 
     HgOpen(800, 600);
 
     HgSetFont(HG_HB, 100);
+
+    HgSetColor(HG_WHITE);  // 文字の色を設定
+
+    HgSetFillColor(HG_BLACK);  // 塗りつぶす色を設定
+
+    HgBoxFill(0, 0, 800, 600, 0);  // 背景を黒にする
 
     HgTextSize(&txt_wid, &txt_hei, "WHITE WIN");
 
@@ -24,16 +29,15 @@ int main()
 
     HgSetFillColor(HG_BLACK);
 
-    for (i = 0; i < 5; i++)
-    {
+    for (i = 0; i < 5; i++) {
         x = 80 + 160 * i;
 
         HgCircle(x, y, R);
 
-        HgCircleFill(x - 20, y + 20, 5, 1); // 左目
-        HgCircleFill(x + 20, y + 20, 5, 1); // 右目
+        HgCircleFill(x - 20, y + 20, 5, 1);  // 左目
+        HgCircleFill(x + 20, y + 20, 5, 1);  // 右目
 
-        HgArc(x, y, 30, M_PI * (7 / 6), M_PI * (-1 / 6)); // 口
+        HgArc(x, y, 30, M_PI * (7 / 6), M_PI * (-1 / 6));  // 口
     }
 
     HgGetChar();

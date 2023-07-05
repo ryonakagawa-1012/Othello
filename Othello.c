@@ -596,16 +596,54 @@ void Result(int result, double Wid_x, double Wid_y) {
 
     int i;  // for文用
 
-    if (result == 1) {
-        HgWSetFont(4, HG_HB, 100);
+    if (result == 1) {                // 白の勝ちならば
+        HgWSetTitle(4, "WHITE WIN");  // ウィンドウのタイトルを設定
 
-        HgWTextSize(4, &txt_wid, &txt_hei, "WHITE WIN");
+        HgWSetFont(4, HG_HB, 100);  // フォントを設定
 
-        printf("wid:%lf, hei:%lf\n", txt_wid, txt_hei);
+        HgWTextSize(4, &txt_wid, &txt_hei,
+                    "WHITE WIN");  // テキストの幅と高さを取得
 
-        HgWText(4, 400 - txt_wid / 2, (300 - txt_hei / 2) + 200, "WHITE WIN");
+        printf("wid:%lf, hei:%lf\n", txt_wid, txt_hei);  // デバッグ用
 
-        HgWSetFillColor(4, HG_BLACK);
+        HgWText(4, 400 - txt_wid / 2, (300 - txt_hei / 2) + 200,
+                "WHITE WIN");  // テキストを表示
+
+        HgWSetFillColor(4, HG_BLACK);  //  塗りつぶす色を設定
+
+        for (i = 0; i < 5; i++) {  // にこちゃんマークを表示
+            x = 80 + 160 * i;
+
+            HgWCircle(4, x, y, R);
+
+            HgWCircleFill(4, x - 20, y + 20, 5, 1);  // 左目
+            HgWCircleFill(4, x + 20, y + 20, 5, 1);  // 右目
+
+            HgWArc(4, x, y, 30, M_PI * (7 / 6), M_PI * (-1 / 6));  // 口
+        }
+
+        HgGetChar();
+        HgClose();
+    } else if (result == 2) {         // 黒の勝ちならば
+        HgWSetTitle(4, "BLACK WIN");  // ウィンドウのタイトルを設定
+
+        HgWSetFont(4, HG_HB, 100);  // フォントを設定
+
+        HgWSetColor(4, HG_WHITE);  // 線の色を設定
+
+        HgWTextSize(4, &txt_wid, &txt_hei,
+                    "BLACK WIN");  // テキストの幅と高さを取得
+
+        printf("wid:%lf, hei:%lf\n", txt_wid, txt_hei);  // デバッグ用
+
+        HgWSetFillColor(4, HG_BLACK);  // 塗りつぶす色を設定
+
+        HgWBoxFill(4, 0, 0, 800, 600, 0);  // 背景を黒にする
+
+        HgWText(4, 400 - txt_wid / 2, (300 - txt_hei / 2) + 200,
+                "BLACK WIN");  // テキストを表示
+
+        HgWSetFillColor(4, HG_WHITE);  // 塗りつぶす色を設定
 
         for (i = 0; i < 5; i++) {
             x = 80 + 160 * i;
