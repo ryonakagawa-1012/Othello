@@ -84,11 +84,6 @@ int main() {
     HgWOpen(X_WINDOW_COORDINATE, Y_WINDOW_COORDINATE, WINDOW_MAIN_SIZE,
             WINDOW_MAIN_SIZE);
 
-    // HgSetFillColor(HG_GREEN);  // ウィンドウの色を緑にする
-
-    // HgBoxFill(0, 0, WINDOW_MAIN_SIZE, WINDOW_MAIN_SIZE,
-    //           0);  // ウィンドウを緑に塗りつぶす
-
     HgSetTitle("Othello");  // ウィンドウのタイトルをOthelloにする
 
     /**********ここまで**********/
@@ -336,8 +331,6 @@ int main() {
                     break;
                 }
             }
-
-            stone_num = 0;  // リセット
         }
 
         /**********ここまで**********/
@@ -374,7 +367,7 @@ void update() {
                 HgBoxFill(x, y, CELL_SIZE, CELL_SIZE, 1);  // 白の正方形を描く
 
                 HgSetFillColor(HG_WHITE);
-                HgCircleFill(xCenter, yCenter, CELL_SIZE / 3, 1);  // 白を置く
+                HgCircleFill(xCenter, yCenter, CELL_SIZE / 2, 1);  // 白を置く
             } else if (board[i][j] == 2)  // 黒だったら
             {
                 xCenter = CELL_SIZE / 2 +
@@ -389,7 +382,7 @@ void update() {
                 HgBoxFill(x, y, CELL_SIZE, CELL_SIZE, 1);  // 白の正方形を描く
 
                 HgSetFillColor(HG_BLACK);
-                HgCircleFill(xCenter, yCenter, CELL_SIZE / 3, 1);  // 黒を置く
+                HgCircleFill(xCenter, yCenter, CELL_SIZE / 2, 1);  // 黒を置く
             } else if (board[i][j] == 3)  // 石を置くことができるマスならば
             {
                 x = CELL_SIZE * (i - 1);  // セルの左下隅の座標を計算

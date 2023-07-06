@@ -84,10 +84,10 @@ int main() {
     HgWOpen(X_WINDOW_COORDINATE, Y_WINDOW_COORDINATE, WINDOW_MAIN_SIZE,
             WINDOW_MAIN_SIZE);
 
-    // HgSetFillColor(HG_GREEN);  // ウィンドウの色を緑にする
+    HgSetFillColor("green");  // ウィンドウの色を緑にする
 
-    // HgBoxFill(0, 0, WINDOW_MAIN_SIZE, WINDOW_MAIN_SIZE,
-    //           0);  // ウィンドウを緑に塗りつぶす
+    HgBoxFill(0, 0, WINDOW_MAIN_SIZE, WINDOW_MAIN_SIZE,
+              0);  // ウィンドウを緑に塗りつぶす
 
     HgSetTitle("Othello");  // ウィンドウのタイトルをOthelloにする
 
