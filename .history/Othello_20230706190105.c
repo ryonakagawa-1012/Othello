@@ -300,42 +300,44 @@ int main() {
         printf("turn: %d\n" , j); //デバック用
         */
 
-        int stone_num;  // 石の数を数える変数
+        if (j >= 60) {
+            int stone_num;  // 石の数を数える
 
-        for (r = 1; r < 9; r++) {
-            for (s = 1; s < 9; s++) {
-                if (board[r][s] == 1)  // 白の石なら
-                {
-                    stone_num++;
-                } else if (board[r][s] == 2)  // 黒の石なら
-                {
-                    stone_num++;
+            for (r = 1; r < 9; r++) {
+                for (s = 1; s < 9; s++) {
+                    if (board[r][s] == 1)  // 白の石なら
+                    {
+                        stone_num++;
+                    } else if (board[r][s] == 2)  // 黒の石なら
+                    {
+                        stone_num++;
+                    }
                 }
             }
-        }
 
-        /*
-        printf("stone_num: %d\n", stone_num); // デバック用
-        */
-        if (stone_num == 64) {
-            if (White_color > Black_color)  // 白の勝ちならば
-            {
-                Result(1, X_WINDOW_RESULT_COORDINATE,
-                       Y_WINDOW_RESULT_COORDINATE);
-                printf("White WIN\n");
-            } else if (Black_color > White_color)  // 黒の勝ちならば
-            {
-                Result(2, X_WINDOW_RESULT_COORDINATE,
-                       Y_WINDOW_RESULT_COORDINATE);
-                printf("Black WIN\n");
-                break;
-            } else  // 引き分けならば
-            {
-                printf("No WINNER\n");
-                break;
+            /*
+            printf("stone_num: %d\n", stone_num); // デバック用
+            */
+            if (stone_num == 64) {
+                if (White_color > Black_color)  // 白の勝ちならば
+                {
+                    Result(1, X_WINDOW_RESULT_COORDINATE,
+                           Y_WINDOW_RESULT_COORDINATE);
+                    printf("White WIN\n");
+                } else if (Black_color > White_color)  // 黒の勝ちならば
+                {
+                    Result(2, X_WINDOW_RESULT_COORDINATE,
+                           Y_WINDOW_RESULT_COORDINATE);
+                    printf("Black WIN\n");
+                    break;
+                } else  // 引き分けならば
+                {
+                    printf("No WINNER\n");
+                    break;
+                }
             }
+            stone_num = 0;  // リセット
         }
-        stone_num = 0;  // リセット
 
         /**********ここまで**********/
     }
