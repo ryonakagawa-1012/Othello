@@ -577,9 +577,6 @@ void Othello_Algorithm(int x, int y) {
 
 /**********CAN_PUT関数**********/
 void CAN_PUT(int turn, int x, int y) {
-#define WHITE 1  // 白の石
-#define BLACK 2  // 黒の石
-
     int i, j, k, l, m, n, o, p, q, r, s, t, u, v, w, z;  // for文用
 
     int color = turn % 2;  // 石の色を表す変数

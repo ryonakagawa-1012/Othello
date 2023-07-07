@@ -82,7 +82,12 @@ int main() {
     /**********標準ウィンドウを作成**********/
 
     HgWOpen(X_WINDOW_COORDINATE, Y_WINDOW_COORDINATE, WINDOW_MAIN_SIZE,
-            WINDOW_MAIN_SIZE);  // ウィンドウを作成
+            WINDOW_MAIN_SIZE);
+
+    // HgSetFillColor(HG_GREEN);  // ウィンドウの色を緑にする
+
+    // HgBoxFill(0, 0, WINDOW_MAIN_SIZE, WINDOW_MAIN_SIZE,
+    //           0);  // ウィンドウを緑に塗りつぶす
 
     HgSetTitle("Othello");  // ウィンドウのタイトルをOthelloにする
 
@@ -135,7 +140,6 @@ int main() {
 
     HgSetEventMask(
         HG_MOUSE_DOWN);  // 標準ウィンドウのマウスクリックを検出するように設定
-
     HgWSetEventMask(
         2,
         HG_MOUSE_DOWN);  // ウィンドウIDが2のウィンドウのマウスクリックを検出するように設定
@@ -176,7 +180,7 @@ int main() {
         /**********石を置けるかどうかの判定**********/
         for (k = 1; k < 9; k++) {
             for (l = 1; l < 9; l++) {
-                CAN_PUT(Turn, l, k);
+                CAN_PUT(j, l, k);
             }
         }
 
@@ -314,10 +318,7 @@ int main() {
         printf("stone_num: %d\n", stone_num); // デバック用
         */
 
-        if (stone_num == 64 || White_color == 0 ||
-            Black_color ==
-                0)  // 石の数が64個になったらまたはどちらかの石が0個になったら
-        {
+        if (stone_num == 64 || White_color == 0 || Black_color == 0) {
             if (White_color > Black_color)  // 白の勝ちならば
             {
                 Result(1, X_WINDOW_RESULT_COORDINATE,
@@ -577,10 +578,7 @@ void Othello_Algorithm(int x, int y) {
 
 /**********CAN_PUT関数**********/
 void CAN_PUT(int turn, int x, int y) {
-#define WHITE 1  // 白の石
-#define BLACK 2  // 黒の石
-
-    int i, j, k, l, m, n, o, p, q, r, s, t, u, v, w, z;  // for文用
+    int i, j, k, l, m, n, o, p, q, r, s, t, u, v, w, z;
 
     int color = turn % 2;  // 石の色を表す変数
 

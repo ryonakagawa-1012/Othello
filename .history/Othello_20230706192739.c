@@ -135,7 +135,6 @@ int main() {
 
     HgSetEventMask(
         HG_MOUSE_DOWN);  // 標準ウィンドウのマウスクリックを検出するように設定
-
     HgWSetEventMask(
         2,
         HG_MOUSE_DOWN);  // ウィンドウIDが2のウィンドウのマウスクリックを検出するように設定
@@ -176,7 +175,7 @@ int main() {
         /**********石を置けるかどうかの判定**********/
         for (k = 1; k < 9; k++) {
             for (l = 1; l < 9; l++) {
-                CAN_PUT(Turn, l, k);
+                CAN_PUT(j, l, k);
             }
         }
 
@@ -577,10 +576,7 @@ void Othello_Algorithm(int x, int y) {
 
 /**********CAN_PUT関数**********/
 void CAN_PUT(int turn, int x, int y) {
-#define WHITE 1  // 白の石
-#define BLACK 2  // 黒の石
-
-    int i, j, k, l, m, n, o, p, q, r, s, t, u, v, w, z;  // for文用
+    int i, j, k, l, m, n, o, p, q, r, s, t, u, v, w, z;
 
     int color = turn % 2;  // 石の色を表す変数
 
