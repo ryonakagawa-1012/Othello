@@ -578,11 +578,17 @@ void Othello_Algorithm(int x, int y) {
 /**********CAN_PUT関数**********/
 void CAN_PUT(int turn, int x, int y) {
 #define WHITE 1  // 白の石
-#define BLACK 2  // 黒の石
+#define BLACK 0  // 黒の石
 
     int i, j, k, l, m, n, o, p, q, r, s, t, u, v, w, z;  // for文用
 
-    int color = turn % 2;  // 石の色を表す変数
+    int color = turn % 2;  // 石の色を表す変数(1:白,0:黒)
+
+    if (color == WHITE)  // 白のターンなら
+    {
+    } else if (color == BLACK)  // 黒のターンなら
+    {
+    }
 
     /*
     printf("color = %d\n", color); // デバッグ用
@@ -611,7 +617,9 @@ void Result(int result, double Wid_x, double Wid_y) {
         HgWTextSize(4, &txt_wid, &txt_hei,
                     "WHITE WIN");  // テキストの幅と高さを取得
 
-        printf("wid:%lf, hei:%lf\n", txt_wid, txt_hei);  // デバッグ用
+        /*
+                printf("wid:%lf, hei:%lf\n", txt_wid, txt_hei);  // デバッグ用
+        */
 
         HgWText(4, 400 - txt_wid / 2, (300 - txt_hei / 2) + 200,
                 "WHITE WIN");  // テキストを表示
@@ -641,7 +649,9 @@ void Result(int result, double Wid_x, double Wid_y) {
         HgWTextSize(4, &txt_wid, &txt_hei,
                     "BLACK WIN");  // テキストの幅と高さを取得
 
-        printf("wid:%lf, hei:%lf\n", txt_wid, txt_hei);  // デバッグ用
+        /*
+                printf("wid:%lf, hei:%lf\n", txt_wid, txt_hei);  // デバッグ用
+        */
 
         HgWSetFillColor(4, HG_BLACK);  // 塗りつぶす色を設定
 
