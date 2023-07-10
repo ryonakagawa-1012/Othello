@@ -584,20 +584,16 @@ void CAN_PUT(int turn, int x, int y) {
 
     int color = turn % 2;  // 石の色を表す変数(1:白,0:黒)
 
-    /*
-printf("color = %d\n", color); // デバッグ用
-*/
-
     if (color == WHITE)  // 白のターンなら
     {
-        if (board[x + 1][y] == BLACK)  // 隣が黒ならば
-        {
-            for (i = 2; i < 8; i++) {
-                        }
-        } else if (color == BLACK)  // 黒のターンなら
-        {
-        }
+        if (board[x + 1][y] == BLACK)
+    } else if (color == BLACK)  // 黒のターンなら
+    {
     }
+
+    /*
+    printf("color = %d\n", color); // デバッグ用
+    */
 }
 /**********ここまで**********/
 
@@ -623,8 +619,7 @@ void Result(int result, double Wid_x, double Wid_y) {
                     "WHITE WIN");  // テキストの幅と高さを取得
 
         /*
-                printf("wid:%lf, hei:%lf\n", txt_wid, txt_hei);  //
-           デバッグ用
+                printf("wid:%lf, hei:%lf\n", txt_wid, txt_hei);  // デバッグ用
         */
 
         HgWText(4, 400 - txt_wid / 2, (300 - txt_hei / 2) + 200,
@@ -656,8 +651,7 @@ void Result(int result, double Wid_x, double Wid_y) {
                     "BLACK WIN");  // テキストの幅と高さを取得
 
         /*
-                printf("wid:%lf, hei:%lf\n", txt_wid, txt_hei);  //
-           デバッグ用
+                printf("wid:%lf, hei:%lf\n", txt_wid, txt_hei);  // デバッグ用
         */
 
         HgWSetFillColor(4, HG_BLACK);  // 塗りつぶす色を設定

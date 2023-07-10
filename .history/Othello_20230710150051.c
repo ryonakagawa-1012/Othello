@@ -584,20 +584,17 @@ void CAN_PUT(int turn, int x, int y) {
 
     int color = turn % 2;  // 石の色を表す変数(1:白,0:黒)
 
-    /*
-printf("color = %d\n", color); // デバッグ用
-*/
-
     if (color == WHITE)  // 白のターンなら
     {
-        if (board[x + 1][y] == BLACK)  // 隣が黒ならば
-        {
-            for (i = 2; i < 8; i++) {
-                        }
+        if (board[x + 1][y] == BLACK) {
         } else if (color == BLACK)  // 黒のターンなら
         {
         }
     }
+
+    /*
+    printf("color = %d\n", color); // デバッグ用
+    */
 }
 /**********ここまで**********/
 

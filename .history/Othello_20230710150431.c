@@ -592,8 +592,8 @@ printf("color = %d\n", color); // デバッグ用
     {
         if (board[x + 1][y] == BLACK)  // 隣が黒ならば
         {
-            for (i = 2; i < 8; i++) {
-                        }
+            for (i = 2; i < 9; i++) {
+            }
         } else if (color == BLACK)  // 黒のターンなら
         {
         }
