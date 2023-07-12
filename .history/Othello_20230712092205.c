@@ -38,7 +38,7 @@ int main() {
     int White_color = 2, Black_color = 2;  // 石の数
     int Turn = 1;  // 奇数は白のターン,偶数は黒のターン
 
-    int i, j, k, l, m, n, o, p, q, r, s, t, u;  // カウンタ変数
+    int i, j, k, l, m, n, o, p, q, r, s;  // カウンタ変数
 
     hgevent *event;  // イベントに関する変数
 
@@ -185,15 +185,19 @@ int main() {
         /**********ここまで**********/
 
         /**********デバック用**********/
+
         /*
-                for (p = 1; p < 9; p++) {
-                    for (q = 1; q < 9; q++) {
-                        printf("%d", board[p][q]);  // デバック用
-                    }
-                    printf("\n");
-                }
-                printf("\n");
+        for (p = 1; p < 9; p++)
+        {
+            for (q = 1; q < 9; q++)
+            {
+                printf("%d", board[p][q]); // デバック用
+            }
+            printf("\n");
+        }
+        printf("\n");
         */
+
         /**********ここまで**********/
 
         event = HgEvent();  // マウスクリックを待つ。
@@ -226,18 +230,18 @@ int main() {
         {
             if (j % 2 == 1)  // 奇数回なら
             {
-                if (board[xCell][yCell] == 3)  // 置けるマスなら
+                if (board[xCell][yCell] == 0)  // 置けるマスなら
                 {
-                    board[xCell][yCell] = 1;  // 白を置く
+                    board[xCell][yCell] = 1;  // 白
                 } else                        // 描写されていたら
                 {
                     j--;
                 }
             } else  // 偶数回なら
             {
-                if (board[xCell][yCell] == 3)  // 置けるマスなら
+                if (board[xCell][yCell] == 0)  // 置けるマスなら
                 {
-                    board[xCell][yCell] = 2;  // 黒を置く
+                    board[xCell][yCell] = 2;  // 黒
                 } else                        // 描写されていたら
                 {
                     j--;
@@ -255,17 +259,6 @@ int main() {
         /**********石を裏返す判定**********/
         Othello_Algorithm(xCell, yCell);  // ここで裏返す
         update();  // 配列とウィンドウを同期させる
-                   /**********ここまで**********/
-
-        /**********置けるマスをリセット**********/
-        for (t = 1; t < 9; t++) {
-            for (u = 1; u < 9; u++) {
-                if (board[t][u] == 3)  // 置けるマスなら
-                {
-                    board[t][u] = 0;  // リセット
-                }
-            }
-        }
         /**********ここまで**********/
 
         /**********石を数えてScoreに表示する**********/
@@ -443,8 +436,6 @@ void Othello_Algorithm(int x, int y) {
                 } else if (board[x + i][y] == -1)  // 右が壁だったら
                 {
                     break;
-                } else if (board[x + i][y] == 3) {  // 右が3だったら
-                    break;
                 }
             }
             /**********ここまで**********/
@@ -464,8 +455,6 @@ void Othello_Algorithm(int x, int y) {
                     break;
                 } else if (board[x][y + k] == -1)  // 上が壁だったら
                 {
-                    break;
-                } else if (board[x][y + k] == 3) {  // 上が3だったら
                     break;
                 }
             }
@@ -487,8 +476,6 @@ void Othello_Algorithm(int x, int y) {
                 } else if (board[x - m][y] == -1)  // 左が壁だったら
                 {
                     break;
-                } else if (board[x - m][y] == 3) {  // 左が3だったら
-                    break;
                 }
             }
             /**********ここまで**********/
@@ -508,8 +495,6 @@ void Othello_Algorithm(int x, int y) {
                     break;
                 } else if (board[x][y - o] == -1)  // 下が壁だったら
                 {
-                    break;
-                } else if (board[x][y - o] == 3) {  // 下が3だったら
                     break;
                 }
             }
@@ -531,8 +516,6 @@ void Othello_Algorithm(int x, int y) {
                 } else if (board[x + q][y + q] == -1)  // 右上が壁だったら
                 {
                     break;
-                } else if (board[x + q][y + q] == 3) {  // 右上が3だったら
-                    break;
                 }
             }
             /**********ここまで**********/
@@ -552,8 +535,6 @@ void Othello_Algorithm(int x, int y) {
                     break;
                 } else if (board[x - s][y + s] == -1)  // 左上が壁だったら
                 {
-                    break;
-                } else if (board[x - s][y + s] == 3) {  // 左上が3だったら
                     break;
                 }
             }
@@ -575,8 +556,6 @@ void Othello_Algorithm(int x, int y) {
                 } else if (board[x - u][y - u] == -1)  // 左下が壁だったら
                 {
                     break;
-                } else if (board[x - u][y - u] == 3) {  // 左下が3だったら
-                    break;
                 }
             }
             /**********ここまで**********/
@@ -597,8 +576,6 @@ void Othello_Algorithm(int x, int y) {
                 } else if (board[x + w][y - w] == -1)  // 右下が壁だったら
                 {
                     break;
-                } else if (board[x + w][y - w] == 3) {  // 右下が3だったら
-                    break;
                 }
             }
             /**********ここまで**********/
@@ -610,8 +587,8 @@ void Othello_Algorithm(int x, int y) {
 
 /**********CAN_PUT関数**********/
 void CAN_PUT(int turn, int x, int y) {
-#define WHITE 1  // 白のターン
-#define BLACK 0  // 黒のターン
+#define WHITE 1  // 白の石
+#define BLACK 0  // 黒の石
 
     int i, j, k, l, m, n, o, p, q, r, s, t, u, v, w, z;  // for文用
 
@@ -623,15 +600,15 @@ printf("color = %d\n", color); // デバッグ用
 
     if (color == WHITE)  // 白のターンなら
     {
-        /**********右方向の判定**********/
-        if (board[x + 1][y] == 2)  // 右が黒ならば
+        if (board[x + 1][y] == BLACK)  // 隣が黒ならば
         {
+            /**********右方向の判定**********/
             for (i = 2; i < 8; i++) {
-                if (board[x + i][y] == 1)  // 白ならば
+                if (board[x + i][y] == WHITE)  // 白ならば
                 {
-                    if (board[x][y] == 0)  // 空白ならば
+                    if (board[x - 1][y] == 0)  // 左が空白ならば
                     {
-                        board[x][y] = 3;  // 左に置けることを示す
+                        board[x - 1][y] = 3;  // 左に置けることを示す
                     }
                 }
                 if (board[x + i][y] == 0)  // 空白ならば
@@ -643,18 +620,15 @@ printf("color = %d\n", color); // デバッグ用
                     break;
                 }
             }
-        }
-        /**********ここまで**********/
+            /**********ここまで**********/
 
-        /**********左方向の判定**********/
-        if (board[x - 1][y] == 2)  // 左が黒ならば
-        {
+            /**********左方向の判定**********/
             for (j = 2; j < 8; j++) {
-                if (board[x - j][y] == 1)  // 白ならば
+                if (board[x - j][y] == WHITE)  // 白ならば
                 {
-                    if (board[x][y] == 0)  // 空白ならば
+                    if (board[x + 1][y] == 0)  // 右が空白ならば
                     {
-                        board[x][y] = 3;  // 右に置けることを示す
+                        board[x + 1][y] = 3;  // 右に置けることを示す
                     }
                 }
                 if (board[x - j][y] == 0)  // 空白ならば
@@ -666,334 +640,13 @@ printf("color = %d\n", color); // デバッグ用
                     break;
                 }
             }
+            /**********ここまで**********/
         }
-        /**********ここまで**********/
-
-        /**********上方向の判定**********/
-        if (board[x][y + 1] == 2)  // 上が黒ならば
-        {
-            for (k = 2; k < 8; k++) {
-                if (board[x][y + k] == 1)  // 白ならば
-                {
-                    if (board[x][y] == 0)  // 空白ならば
-                    {
-                        board[x][y] = 3;  // 下に置けることを示す
-                    }
-                }
-                if (board[x][y + k] == 0)  // 空白ならば
-                {
-                    break;
-                }
-                if (board[x][y + k] == -1)  // 壁ならば
-                {
-                    break;
-                }
-            }
-        }
-        /**********ここまで**********/
-
-        /**********下方向の判定**********/
-        if (board[x][y - 1] == 2)  // 下が黒ならば
-        {
-            for (l = 2; l < 8; l++) {
-                if (board[x][y - l] == 1)  // 白ならば
-                {
-                    if (board[x][y] == 0)  // 空白ならば
-                    {
-                        board[x][y] = 3;  // 上に置けることを示す
-                    }
-                }
-                if (board[x][y - l] == 0)  // 空白ならば
-                {
-                    break;
-                }
-                if (board[x][y - l] == -1)  // 壁ならば
-                {
-                    break;
-                }
-            }
-        }
-        /**********ここまで**********/
-
-        /**********右上方向の判定**********/
-        if (board[x + 1][y + 1] == 2)  // 右上が黒ならば
-        {
-            for (m = 2; m < 8; m++) {
-                if (board[x + m][y + m] == 1)  // 白ならば
-                {
-                    if (board[x][y] == 0)  // 空白ならば
-                    {
-                        board[x][y] = 3;  // 左下に置けることを示す
-                    }
-                }
-                if (board[x + m][y + m] == 0)  // 空白ならば
-                {
-                    break;
-                }
-                if (board[x + m][y + m] == -1)  // 壁ならば
-                {
-                    break;
-                }
-            }
-        }
-        /**********ここまで**********/
-
-        /**********左上方向の判定**********/
-        if (board[x - 1][y + 1] == 2)  // 左上が黒ならば
-        {
-            for (n = 2; n < 8; n++) {
-                if (board[x - n][y + n] == 1)  // 白ならば
-                {
-                    if (board[x][y] == 0)  // 空白ならば
-                    {
-                        board[x][y] = 3;  // 右下に置けることを示す
-                    }
-                }
-                if (board[x - n][y + n] == 0)  // 空白ならば
-                {
-                    break;
-                }
-                if (board[x - n][y + n] == -1)  // 壁ならば
-                {
-                    break;
-                }
-            }
-        }
-        /**********ここまで**********/
-
-        /**********右下方向の判定**********/
-        if (board[x + 1][y - 1] == 2)  // 右下が黒ならば
-        {
-            for (o = 2; o < 8; o++) {
-                if (board[x + o][y - o] == 1)  // 白ならば
-                {
-                    if (board[x][y] == 0)  // 空白ならば
-                    {
-                        board[x][y] = 3;  // 左上に置けることを示す
-                    }
-                }
-                if (board[x + o][y - o] == 0)  // 空白ならば
-                {
-                    break;
-                }
-                if (board[x + o][y - o] == -1)  // 壁ならば
-                {
-                    break;
-                }
-            }
-        }
-        /**********ここまで**********/
-
-        /**********左下方向の判定**********/
-        if (board[x - 1][y - 1] == 2)  // 左下が黒ならば
-        {
-            for (p = 2; p < 8; p++) {
-                if (board[x - p][y - p] == 1)  // 白ならば
-                {
-                    if (board[x][y] == 0)  // 空白ならば
-                    {
-                        board[x][y] = 3;  // 右上に置けることを示す
-                    }
-                }
-                if (board[x - p][y - p] == 0)  // 空白ならば
-                {
-                    break;
-                }
-                if (board[x - p][y - p] == -1)  // 壁ならば
-                {
-                    break;
-                }
-            }
-        }
-        /**********ここまで**********/
-
     } else if (color == BLACK)  // 黒のターンなら
     {
-        /**********右方向の判定**********/
-        if (board[x + 1][y] == 1)  // 右が白ならば
-        {
-            for (m = 2; m < 8; m++) {
-                if (board[x + m][y] == 2)  // 黒ならば
-                {
-                    if (board[x][y] == 0)  // 空白ならば
-                    {
-                        board[x][y] = 3;  // 左に置けることを示す
-                    }
-                }
-                if (board[x + m][y] == 0)  // 空白ならば
-                {
-                    break;
-                }
-                if (board[x + m][y] == -1)  // 壁ならば
-                {
-                    break;
-                }
-            }
-        }
-        /**********ここまで**********/
-
-        /**********左方向の判定**********/
-        if (board[x - 1][y] == 1)  // 左が白ならば
-        {
-            for (n = 2; n < 8; n++) {
-                if (board[x - n][y] == 2)  // 黒ならば
-                {
-                    if (board[x][y] == 0)  // 空白ならば
-                    {
-                        board[x][y] = 3;  // 右に置けることを示す
-                    }
-                }
-                if (board[x - n][y] == 0)  // 空白ならば
-                {
-                    break;
-                }
-                if (board[x - n][y] == -1)  // 壁ならば
-                {
-                    break;
-                }
-            }
-        }
-        /**********ここまで**********/
-
-        /**********上方向の判定**********/
-        if (board[x][y + 1] == 1)  // 上が白ならば
-        {
-            for (o = 2; o < 8; o++) {
-                if (board[x][y + o] == 2)  // 黒ならば
-                {
-                    if (board[x][y] == 0)  // 空白ならば
-                    {
-                        board[x][y] = 3;  // 下に置けることを示す
-                    }
-                }
-                if (board[x][y + o] == 0)  // 空白ならば
-                {
-                    break;
-                }
-                if (board[x][y + o] == -1)  // 壁ならば
-                {
-                    break;
-                }
-            }
-        }
-        /**********ここまで**********/
-
-        /**********下方向の判定**********/
-        if (board[x][y - 1] == 1)  // 下が白ならば
-        {
-            for (p = 2; p < 8; p++) {
-                if (board[x][y - p] == 2)  // 黒ならば
-                {
-                    if (board[x][y] == 0)  // 空白ならば
-                    {
-                        board[x][y] = 3;  // 上に置けることを示す
-                    }
-                }
-                if (board[x][y - p] == 0)  // 空白ならば
-                {
-                    break;
-                }
-                if (board[x][y - p] == -1)  // 壁ならば
-                {
-                    break;
-                }
-            }
-        }
-        /**********ここまで**********/
-
-        /**********右上方向の判定**********/
-        if (board[x + 1][y + 1] == 1)  // 右上が白ならば
-        {
-            for (m = 2; m < 8; m++) {
-                if (board[x + m][y + m] == 2)  // 黒ならば
-                {
-                    if (board[x][y] == 0)  // 空白ならば
-                    {
-                        board[x][y] = 3;  // 左下に置けることを示す
-                    }
-                }
-                if (board[x + m][y + m] == 0)  // 空白ならば
-                {
-                    break;
-                }
-                if (board[x + m][y + m] == -1)  // 壁ならば
-                {
-                    break;
-                }
-            }
-        }
-        /**********ここまで**********/
-
-        /**********左上方向の判定**********/
-        if (board[x - 1][y + 1] == 1)  // 左上が白ならば
-        {
-            for (n = 2; n < 8; n++) {
-                if (board[x - n][y + n] == 2)  // 黒ならば
-                {
-                    if (board[x][y] == 0)  // 空白ならば
-                    {
-                        board[x][y] = 3;  // 右下に置けることを示す
-                    }
-                }
-                if (board[x - n][y + n] == 0)  // 空白ならば
-                {
-                    break;
-                }
-                if (board[x - n][y + n] == -1)  // 壁ならば
-                {
-                    break;
-                }
-            }
-        }
-        /**********ここまで**********/
-
-        /**********右下方向の判定**********/
-        if (board[x + 1][y - 1] == 1)  // 右下が白ならば
-        {
-            for (o = 2; o < 8; o++) {
-                if (board[x + o][y - o] == 2)  // 黒ならば
-                {
-                    if (board[x][y] == 0)  // 空白ならば
-                    {
-                        board[x][y] = 3;  // 左上に置けることを示す
-                    }
-                }
-                if (board[x + o][y - o] == 0)  // 空白ならば
-                {
-                    break;
-                }
-                if (board[x + o][y - o] == -1)  // 壁ならば
-                {
-                    break;
-                }
-            }
-        }
-        /**********ここまで**********/
-
-        /**********左下方向の判定**********/
-        if (board[x - 1][y - 1] == 1)  // 左下が白ならば
-        {
-            for (p = 2; p < 8; p++) {
-                if (board[x - p][y - p] == 2)  // 黒ならば
-                {
-                    if (board[x][y] == 0)  // 空白ならば
-                    {
-                        board[x][y] = 3;  // 右上に置けることを示す
-                    }
-                }
-                if (board[x - p][y - p] == 0)  // 空白ならば
-                {
-                    break;
-                }
-                if (board[x - p][y - p] == -1)  // 壁ならば
-                {
-                    break;
-                }
-            }
-        }
-        /**********ここまで**********/
     }
 }
+
 /**********ここまで**********/
 
 /**********Result関数**********/
