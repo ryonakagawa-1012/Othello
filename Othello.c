@@ -25,7 +25,7 @@
     2,緑の表示が正しくない場合が稀にある。
     **********
 
-    g2354017  Ryo Nakagawa
+    Ryo Nakagawa
 */
 
 #include <handy.h>
